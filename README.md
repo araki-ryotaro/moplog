@@ -28,7 +28,7 @@ RIOTGAMESのゲームで遊んでいる人
 - テーブル定義書
 - https://docs.google.com/spreadsheets/d/1l26syEfvPN__uARyHs6cScYOMtNocuJRdT1f_wdq3rg/edit#gid=1373217982
 - 詳細設計
--
+- https://docs.google.com/spreadsheets/d/1JKF7RhrMylIdL2Mts82wnZw5ymMknSjRloVqQzCKsWo/edit#gid=626014883
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -38,8 +38,6 @@ RIOTGAMESのゲームで遊んでいる人
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
 - 自分で撮影している動画数本
 - RIOTGAMES利用規約
 - https://www.riotgames.com/ja/legal

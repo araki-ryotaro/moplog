@@ -1,0 +1,9 @@
+<%= form_with model: @post, local: true do |f| %>
+  <p>題名</p>
+  <%= f.text_field :title %><br>
+  <p>説明</p>
+  <%= f.text_area :description %><br>
+  <p>動画</p>
+  <%= f.file_field :video %><br>
+  <%= f.submit %>
+<% end %>
