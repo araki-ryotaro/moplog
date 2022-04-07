@@ -1,0 +1,9 @@
+編集画面
+<%= form_with model: @user, url: user_path(@user.id), method: :patch, local: :true do |f| %>
+  <p>ニックネーム</p>
+  <%= f.text_field :name %><br>
+  <p>メールアドレス</p>
+  <%= f.email_field :email %><br>
+  <%= f.submit "変更する" %>
+<% end %>
+<%= link_to "退会する", unsubscribe_path %>

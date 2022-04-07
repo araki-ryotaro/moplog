@@ -1,0 +1,6 @@
+マイページ
+
+ようこそ<%= @user.name %>
+<%= link_to "編集する", edit_user_path(@user.id) %>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<%= link_to "トップへ", root_path %>

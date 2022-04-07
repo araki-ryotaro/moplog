@@ -3,3 +3,7 @@
   <p><%= @post.description %></p>
   <video src="<%= rails_blob_path(@post.video) %>" type="video/mp4" controls></video>
 <% end %>
+
+<%= link_to "一覧ページへ", posts_path %>
+<%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<%= link_to "編集ページへ", edit_post_path(@post.id) %>

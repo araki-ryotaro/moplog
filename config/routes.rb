@@ -8,7 +8,12 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :posts, only: [:index, :new, :create, :show, :edit, :destroy, :update]
+    resources :users, only: [:index, :show, :edit, :update]
   end
+
+  get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+
+  patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
