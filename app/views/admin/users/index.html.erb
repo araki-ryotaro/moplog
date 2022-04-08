@@ -1,4 +1,6 @@
 <% @users.each do |user| %>
+<p>会員ID</p>
+<%= user.id %>
 <p>ニックネーム</p>
 <%= link_to user.name, admin_user_path(user.id) %>
   <% if user.is_deleted == false %>
