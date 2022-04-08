@@ -11,13 +11,22 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
   end
 
-  get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+  get '/users/:id/unsubscribe' => 'public/users#unsubscribe', as: 'unsubscribe'
 
-  patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+  patch '/users/:id/withdrawal' => 'public/users#withdrawal', as: 'withdrawal'
 
-  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+
+  namespace :admin do
+    resources :posts, only: [:index, :show, :edit, :destroy, :update]
+    resources :users, only: [:index, :show, :edit, :update]
+  end
+
+  get '/admin/users/:id/unsubscribe' => 'admin/users#unsubscribe', as: 'admin_unsubscribe'
+
+  patch '/admin/users/:id/withdrawal' => 'admin/users#withdrawal', as: 'admin_withdrawal'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

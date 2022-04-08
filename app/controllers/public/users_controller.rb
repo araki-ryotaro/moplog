@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
   end
 
   def withdrawal
-    @user = user.find(params[:id])
+    @user = User.find(params[:id])
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path
@@ -41,5 +41,4 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email)
   end
-
 end

@@ -2,6 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  protected
 
   def reject_user
     @user = User.find_by(name: params[:user][:name])

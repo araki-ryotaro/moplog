@@ -1,0 +1,11 @@
+<h1>会員詳細ページ</h1>
+
+<%= @user.name %>
+<% if @user.is_deleted == false %>
+  <p class="text-success">有効</p>
+<% else %>
+  <p class="text-secondary">退会</p>
+<% end %>
+
+<%= link_to "編集する", edit_admin_user_path(@user.id) %>
+<%= link_to "トップへ", root_path %>

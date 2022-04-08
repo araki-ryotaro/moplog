@@ -1,0 +1,10 @@
+<% @users.each do |user| %>
+<p>ニックネーム</p>
+<%= link_to user.name, admin_user_path(user.id) %>
+  <% if user.is_deleted == false %>
+    <p class="text-success">有効</p>
+  <% else %>
+    <p class="text-secondary">退会</p>
+  <% end %>
+<% end %>
+<%= link_to "トップページへ", root_path %>

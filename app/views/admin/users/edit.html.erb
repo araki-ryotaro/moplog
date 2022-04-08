@@ -1,0 +1,11 @@
+編集画面
+<%= form_with model: @user, url: admin_user_path(@user.id), method: :patch, local: :true do |f| %>
+  <p>ニックネーム</p>
+  <%= f.text_field :name %><br>
+  <p>メールアドレス</p>
+  <%= f.email_field :email %><br>
+  <p>会員ステータス</p>
+  <%= f.radio_button :is_deleted, false %>有効
+  <%= f.radio_button :is_deleted, true %>退会
+  <%= f.submit "変更する" %>
+<% end %>
