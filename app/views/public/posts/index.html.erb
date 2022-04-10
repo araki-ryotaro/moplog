@@ -4,5 +4,7 @@
 <%= link_to post.title, post %>
 <p>説明</p>
 <%= post.description %>
+<p>ジャンル</p>
+<%= post.genre.name %>
 <% end %><br>
 <%= link_to "トップページへ", root_path %>

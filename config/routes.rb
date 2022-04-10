@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :posts, only: [:index, :new, :create, :show, :edit, :destroy, :update]
+    resources :posts, only: [:index, :new, :create, :show, :edit, :destroy, :update] do
+      resources :post_comments, only: [:create, :destroy]
+    end
     resources :users, only: [:index, :show, :edit, :update]
   end
 
@@ -20,7 +22,10 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :posts, only: [:index, :show, :edit, :destroy, :update]
+    resources :posts, only: [:index, :show, :edit, :destroy, :update] do
+      resources :post_comments, only: [:destroy]
+    end
+    resources :genres, only: [:index,:create,:edit,:update]
     resources :users, only: [:index, :show, :edit, :update]
   end
 

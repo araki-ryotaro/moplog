@@ -3,6 +3,8 @@
   <%= f.text_field :title %><br>
   <p>説明</p>
   <%= f.text_area :description %><br>
+  <p>ジャンル</p>
+  <%= f.collection_select(:genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --") %>
   <p>動画</p>
   <%= f.file_field :video %><br>
   <%= f.submit "変更する" %>
