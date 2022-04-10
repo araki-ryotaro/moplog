@@ -24,9 +24,5 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
   end
 
-  get '/admin/users/:id/unsubscribe' => 'admin/users#unsubscribe', as: 'admin_unsubscribe'
-
-  patch '/admin/users/:id/withdrawal' => 'admin/users#withdrawal', as: 'admin_withdrawal'
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
