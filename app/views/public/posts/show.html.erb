@@ -5,6 +5,20 @@
   <video src="<%= rails_blob_path(@post.video) %>" type="video/mp4" controls></video>
 <% end %>
 
+<% if @post.favorited_by?(current_user) %>
+  <p>
+    <%= link_to post_favorites_path(@post), method: :delete do %>
+      ★<%= @post.favorites.count %>いいね
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to post_favorites_path(@post), method: :post do %>
+      ☆<%= @post.favorites.count %>いいね
+    <% end %>
+  </p>
+<% end %>
+
 <p>コメント件数:<%= @post.post_comments.count %></p>
 <% @post.post_comments.each do |post_comment| %>
   <%= post_comment.user.name %>

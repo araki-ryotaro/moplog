@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :posts, only: [:index, :new, :create, :show, :edit, :destroy, :update] do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :users, only: [:index, :show, :edit, :update]
   end
+
+  get '/users/searches/about', to: "public/searches#top" , as: "search"
 
   get '/users/:id/unsubscribe' => 'public/users#unsubscribe', as: 'unsubscribe'
 
