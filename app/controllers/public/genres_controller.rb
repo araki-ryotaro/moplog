@@ -1,9 +1,9 @@
 class Public::GenresController < ApplicationController
+  before_action :authenticate_user!
 
   def show
-    @genre = Genre.find(params[:id])
-    @posts = Post.where(genre_id: @genre.id)
     @genres = Genre.all
+    @genre = Genre.find(params[:id])
   end
 
 end

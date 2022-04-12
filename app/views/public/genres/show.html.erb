@@ -1,0 +1,6 @@
+<h1><%= @genre.name %>投稿一覧</h1><%= @genre.posts.count %>件
+
+<% @genre.posts.each do |post| %>
+    <%= link_to post.title, post_path(post) %>
+    <%= post.description %>
+<% end %>

@@ -1,4 +1,5 @@
 class Public::SearchesController < ApplicationController
+  before_action :authenticate_user!
 
   def top
     @range = params[:range]

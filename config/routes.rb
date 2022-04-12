@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     resources :users, only: [:index, :show, :edit, :update]
+    resources :genres, only: [:show]
   end
 
   get '/users/searches/about', to: "public/searches#top" , as: "search"
