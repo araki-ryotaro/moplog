@@ -5,6 +5,6 @@
 <p>説明</p>
 <%= post.description %>
 <p>ジャンル</p>
-<%= post.genre.name %>
+<%= link_to post.genre.name, admin_genre_path(post.genre.id) %>
 <% end %><br>
 <%= link_to "トップページへ", root_path %>

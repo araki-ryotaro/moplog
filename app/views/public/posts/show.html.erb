@@ -34,5 +34,7 @@
 <% end %>
 
 <%= link_to "一覧ページへ", posts_path %>
-<%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<%= link_to "編集ページへ", edit_post_path(@post.id) %>
+<% if @post.user == current_user %>
+  <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <%= link_to "編集ページへ", edit_post_path(@post.id) %>
+<% end %>

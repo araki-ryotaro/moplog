@@ -27,9 +27,6 @@
               <%= link_to "新規投稿", new_post_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
-              <%= link_to "新規投稿", new_post_path, class: 'nav-link text-light' %>
-            </li>
-            <li class="nav-item">
             <%= link_to "投稿一覧", posts_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
@@ -50,7 +47,7 @@
             </li>
           <% else %>
             <li class="nav-item">
-            <%=  link_to "管理者用ログイン", new_admin_session_path, class: 'nav-link text-light' %>
+            <%=  link_to "管理者用", new_admin_session_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
             <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light'%>
@@ -69,6 +66,8 @@
         </div>
       </nav>
     </header>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
