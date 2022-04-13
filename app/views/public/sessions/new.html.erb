@@ -1,13 +1,12 @@
 <h2>ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <form>
-  <div class="mb-3">
+  <div class="field mt-3">
     <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field mt-3">
     <%= f.label :パスワード %><br />
     <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
   </div>
@@ -23,5 +22,9 @@
     <%= f.submit "ログイン", class: "btn btn-primary form-control" %>
   </div>
 <% end %>
+
+  <div class="actions mt-3 mb-3">
+    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-block", method: :post %>
+  </div>
 
 <%= render "public/shared/links" %>

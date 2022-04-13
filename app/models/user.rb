@@ -14,6 +14,13 @@ class User < ApplicationRecord
     super && (is_deleted == false)
   end
 
+  def self.guest
+    find_or_create_by!(name: 'ゲストユーザー' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲストユーザー"
+    end
+  end
+
   # 検索方法の分岐
   def self.looks(search, word)
     if search == "perfect_match"
