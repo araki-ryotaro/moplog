@@ -12,7 +12,7 @@
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
+    <div class="field mt-3">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
@@ -26,5 +26,6 @@
   <div class="actions mt-3 mb-3">
     <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-block", method: :post %>
   </div>
-
-<%= render "public/shared/links" %>
+  <div class="btn btn-outline-dark text-light">
+    <%= render "public/shared/links" %>
+  </div>
