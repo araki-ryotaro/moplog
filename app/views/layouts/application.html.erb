@@ -18,11 +18,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
           <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "マイページ", users_path, class: 'nav-link text-light' %>
-            </li>
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <%= link_to "新規投稿", new_post_path, class: 'nav-link text-light' %>
             </li>
@@ -30,14 +27,24 @@
             <%= link_to "投稿一覧", posts_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
+              <%= link_to "ユーザー一覧", users_path, class: 'nav-link text-light' %>
+            </li>
+            <li class="nav-item">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
             </li>
+          </ul>
+          <tr>
+            <font color="white">
+              【<%= current_user.name %>】ログイン中
+            </font>
+          </tr>
           <% elsif admin_signed_in? %>
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item">
             <%= link_to "投稿一覧", admin_posts_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
-            <%= link_to "会員一覧", admin_users_path, class: 'nav-link text-light' %>
+            <%= link_to "ユーザー一覧", admin_users_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
             <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-light' %>
@@ -45,7 +52,9 @@
             <li class="nav-item">
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
             </li>
+          </ul>
           <% else %>
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item">
             <%=  link_to "管理者用", new_admin_session_path, class: 'nav-link text-light' %>
             </li>
@@ -55,12 +64,13 @@
             <li class="nav-item">
             <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
             </li>
+          </ul>
           <% end %>
           </ul>
           <div class="form-inline navbar-nav ml-auto">
             <%= form_with url: search_path, local: true, method: :get do |f| %>
               <%= f.text_field :word, class: "form-control" %>
-              <%= f.select :range, options_for_select([['User'], ['Post']]) %>
+              <%= f.select :range, options_for_select([['投稿者'], ['タイトル']]) %>
               <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backword_match"], ["部分一致","partial_match"]]) %>
               <%= f.submit "検索", class: 'btn btn-outline-light my-2 my-sm-0' %>
             <% end %>

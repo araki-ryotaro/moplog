@@ -2,7 +2,7 @@ class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @genres = Genre.all
+    @genres = Genre.all.order(id: "DESC")
     @genre = Genre.new
   end
 
@@ -13,7 +13,7 @@ class Admin::GenresController < ApplicationController
   end
 
   def show
-    @genres = Genre.all
+    @genres = Genre.all.order(id: "DESC")
     @genre = Genre.find(params[:id])
   end
 

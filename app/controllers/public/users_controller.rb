@@ -2,11 +2,12 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user = current_user
+    @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = Post.where(user_id: @user.id).order(id: "DESC")
   end
 
   def edit
@@ -14,7 +15,7 @@ class Public::UsersController < ApplicationController
     if @user == current_user
       render :edit
     else
-      redirect_to current_user
+      redirect_to user_path(current_user.id)
     end
   end
 

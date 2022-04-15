@@ -4,12 +4,13 @@
   <div class="embed-responsive embed-responsive-16by9">
     <video src="<%= rails_blob_path(@post.video) %>" type="video/mp4" controls></video>
   </div><br>
+  <h6>投稿者：<%= @post.user.name %></h6>
   <h5><%= @post.description %></h5>
   <div class="mb-2">
-  <% if @post.user == current_user %>
-    <%= link_to "編集ページ", edit_post_path(@post.id), class: "btn btn-sm btn-info" %>
-    <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
-  <% end %>
+    <% if @post.user == current_user %>
+      <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-sm btn-info" %>
+      <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
+    <% end %>
   </div>
   <% if @post.favorited_by?(current_user) %>
     <p>
@@ -17,12 +18,16 @@
         ★<%= @post.favorites.count %>
       <% end %>
     </p>
-    <% else %>
+    <% elsif @user.name != "ゲストユーザー" %>
     <p>
       <%= link_to post_favorites_path(@post), method: :post, class: "btn btn-sm btn-dark" do %>
         ☆<%= @post.favorites.count %>
       <% end %>
     </p>
+    <% else %>
+    <div class="btn btn-sm btn-dark">
+      ☆<%= @post.favorites.count %>
+    </div>
   <% end %>
   <p>コメント件数:<%= @post.post_comments.count %></p>
   <div class='row mt-5'>
@@ -51,9 +56,11 @@
       </tbody>
     </table>
     <div class="form-outline field">
-      <%= form_with model: [@post, @post_comment], local: true do |f| %>
-        <%= f.text_area :comment, rows: "5", placeholder: "コメントはここに記載", class: "form-control" %>
-        <%= f.submit "送信", class: "btn btn-sm btn-dark mb-2" %>
+      <% if @user.name != "ゲストユーザー" %>
+        <%= form_with model: [@post, @post_comment], local: true do |f| %>
+          <%= f.text_area :comment, rows: "5", placeholder: "コメントはここに記載", class: "form-control" %>
+          <%= f.submit "送信", class: "btn btn-sm btn-dark mb-2" %>
+        <% end %>
       <% end %>
     </div>
   </div>

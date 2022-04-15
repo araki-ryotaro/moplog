@@ -1,20 +1,28 @@
 <div class='container mt-5'>
   <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">新規投稿</h2>
-  <div class='row'>
+  <div class='row mt-5'>
     <div class='col-6 mx-auto'>
-      <div class="mt-5">
-        <%= form_with model: @post, local: true do |f| %>
-          <p class="mt-3">題名</p>
-          <%= f.text_field :title %><br>
-          <p class="mt-3">説明</p>
-          <%= f.text_area :description %><br>
-          <p class="mt-3">ジャンル</p>
-          <%= f.collection_select(:genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --") %>
-          <p class="mt-3">動画</p>
-          <%= f.file_field :video %><br>
-          <%= f.submit "投稿する", class: "mt-3" %>
-        <% end %>
+      <%= form_with model: @post, local: true do |f| %>
+        <table class="table">
+          <tr>
+            <td>タイトル</td>
+            <td><%= f.text_field :title, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>動画説明</td>
+            <td><%= f.text_area :description, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>ジャンル選択</td>
+            <td><%= f.collection_select(:genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --") %></td>
+          </tr>
+          <tr>
+            <td>投稿動画</td>
+            <td><%= f.file_field :video %></td>
+          </tr>
+        </table>
+        <%= f.submit "投稿", class: "mt-3 col mx-auto btn btn-sm btn-info" %>
+      <% end %>
       </div>
-    </div>
   </div>
 </div>

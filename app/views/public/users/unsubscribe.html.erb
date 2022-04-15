@@ -1,9 +1,13 @@
-<h2>退会お手続き</h2>
- <p>
-   退会手続きをされますと、全てのサービスがご利用いただけなくなります。<br>
-   再度ご利用をいただく場合には、新規登録のお手続きが必要になります。<br>
-   今までのコメント、いいね、投稿した内容も全て消去されます。<br>
-   本当に退会してよろしいですか？
- </p>
-  <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
-  <%= link_to "退会しない", users_path %>
+<div class='container mt-5'>
+ <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">退会手続き</h2>
+  <div class='row mt-5'>
+    <div class='col-8 mx-auto'>
+      <h5>退会手続きをされますと、全てのサービスがご利用いただけなくなります。</h5>
+      <h5>再度ご利用をいただく場合には、新規登録のお手続きが必要になります。</h5>
+      <h5>今までのコメント、いいね、投稿した内容も全て消去されます。</h5>
+      <h5>本当に退会してよろしいですか？</h5>
+      <%= link_to "退会しない", users_path, class: "mt-3 col mx-auto btn btn-sm btn-info" %>
+      <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "mt-3 col mx-auto btn btn-sm btn-danger" %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,23 @@
-  マイページ
-
-ようこそ<%= @user.name %>
-<%= link_to "編集する", edit_user_path(@user.id) %>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<%= link_to "トップへ", root_path %>
+<div class='container mt-5'>
+  <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">ユーザー一覧</h2>
+  <div class='row mt-5'>
+    <div class='col-8 mx-auto'>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>ユーザー名</th>
+            <th>投稿数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <th><%= link_to user.name, user_path(user.id) %></th>
+            <th><%= user.post.count %>投稿</th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

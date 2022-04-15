@@ -2,12 +2,12 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(id: "DESC")
   end
 
   def show
     @post = Post.find(params[:id])
-    @genres = Genre.all
+    @genres = Genre.all.order(id: "DESC")
   end
 
   def edit

@@ -19,13 +19,11 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "ログイン", class: "btn btn-primary form-control" %>
+    <%= f.submit "ログイン", class: "btn btn-info form-control" %>
   </div>
 <% end %>
 
   <div class="actions mt-3 mb-3">
     <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-block", method: :post %>
   </div>
-  <div class="btn btn-outline-dark text-light">
-    <%= render "public/shared/links" %>
-  </div>
+<%= render "public/shared/links" %>

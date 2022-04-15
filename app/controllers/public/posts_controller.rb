@@ -1,12 +1,18 @@
 class Public::PostsController < ApplicationController
 
   def index
-    @posts = Post.all
-    @genres = Genre.all
+    @posts = Post.all.order(id: "DESC")
+    @genres = Genre.all.order(id: "DESC")
   end
 
   def new
     @post = Post.new
+    @user = current_user
+    if @user.name != "ゲストユーザー"
+      render :new
+    else
+      redirect_to posts_path
+    end
   end
 
   def create
@@ -17,9 +23,10 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    @genres = Genre.all
+    @genres = Genre.all.order(id: "DESC")
   end
 
   def edit

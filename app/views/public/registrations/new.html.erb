@@ -22,9 +22,7 @@
         <%= f.label :パスワード確認 %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
       </div>
-      <%= f.submit "新規登録", class: "btn btn-primary form-control" %>
+      <%= f.submit "新規登録", class: "btn btn-success form-control" %>
     </form>
 <% end %>
-  <div class="btn btn-outline-dark text-light mt-3">
-    <%= render "public/shared/links" %>
-  </div>
+<%= render "public/shared/links" %>
