@@ -15,7 +15,7 @@
           <tbody>
             <% @users.each do |user| %>
             <tr>
-              <th><%= link_to user.name, user_path(user.id) %></th>
+              <th><%= link_to user.name, admin_user_path(user.id) %></th>
               <th><%= user.post.count %>投稿</th>
             </tr>
             <% end %>
@@ -40,10 +40,10 @@
           <tbody>
             <% @posts.each do |post| %>
             <tr>
-              <th><%= link_to post.user.name, user_path(post.user.id) %></th>
-              <th><%= link_to post.title, post %></th>
+              <th><%= link_to post.user.name, admin_user_path(post.user.id) %></th>
+              <th><%= link_to post.title, admin_post_path(post.id) %></th>
               <th><%= post.description %></th>
-              <th><%= link_to post.genre.name, genre_path(post.genre.id) %></th>
+              <th><%= link_to post.genre.name, admin_genre_path(post.genre.id) %></th>
             </tr>
             <% end %>
           </tbody>

@@ -2,12 +2,12 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
+    @users = User.all.order(id: "DESC").page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.where(user_id: @user.id).order(id: "DESC")
+    @posts = Post.where(user_id: @user.id).order(id: "DESC").page(params[:page]).per(10)
   end
 
   def edit

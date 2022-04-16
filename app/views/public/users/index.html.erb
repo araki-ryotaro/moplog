@@ -5,6 +5,7 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
+            <th>ユーザーID</th>
             <th>ユーザー名</th>
             <th>投稿数</th>
           </tr>
@@ -12,12 +13,17 @@
         <tbody>
           <% @users.each do |user| %>
           <tr>
+            <th><%= user.id %></th>
             <th><%= link_to user.name, user_path(user.id) %></th>
             <th><%= user.post.count %>投稿</th>
           </tr>
           <% end %>
+
         </tbody>
       </table>
     </div>
+  </div>
+  <div  class="mx-auto" style="width: 200px;">
+    <%= paginate @users %>
   </div>
 </div>

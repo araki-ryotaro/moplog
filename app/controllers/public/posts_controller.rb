@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @posts = Post.all.order(id: "DESC")
@@ -31,6 +32,11 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.user_id == current_user.id
+      render :edit
+    else
+      redirect_to posts_path
+    end
   end
 
   def update

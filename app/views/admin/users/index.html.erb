@@ -1,12 +1,33 @@
-<% @users.each do |user| %>
-<p>会員ID</p>
-<%= user.id %>
-<p>ニックネーム</p>
-<%= link_to user.name, admin_user_path(user.id) %>
-  <% if user.is_deleted == false %>
-    <p class="text-success">有効</p>
-  <% else %>
-    <p class="text-secondary">退会</p>
-  <% end %>
-<% end %>
-<%= link_to "トップページへ", root_path %>
+<div class='container mt-5'>
+  <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">ユーザー一覧</h2>
+  <div class='row mt-5'>
+    <div class='col mx-auto'>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>ユーザーID</th>
+            <th>ユーザー名</th>
+            <th>投稿数</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <th><%= user.id %></th>
+            <th><%= link_to user.name, admin_user_path(user.id) %></th>
+            <th><%= user.post.count %>投稿</th>
+            <th>
+              <% if user.is_deleted == false %>
+                <p class="text-success">有効</p>
+              <% else %>
+                <p class="text-secondary">退会</p>
+              <% end %>
+            </th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
