@@ -6,9 +6,9 @@ class Public::SearchesController < ApplicationController
     @word = params[:word]
     @search = params[:search]
     if @range == "投稿者"
-      @users = User.looks(params[:search], params[:word])
+      @users = User.looks(params[:search], params[:word]).page(params[:page]).per(10)
     else
-      @posts = Post.looks(params[:search], params[:word])
+      @posts = Post.looks(params[:search], params[:word]).page(params[:page]).per(10)
     end
   end
 

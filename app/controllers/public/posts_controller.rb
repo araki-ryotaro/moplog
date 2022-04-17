@@ -2,8 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all.order(id: "DESC")
-    @genres = Genre.all.order(id: "DESC")
+    @posts = Post.all.order(id: "DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -19,15 +18,17 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to post_path(@post.id)
+    if @post.save
+      redirect_to post_path(@post.id)
+    else
+      render :new
+    end
   end
 
   def show
     @user = current_user
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    @genres = Genre.all.order(id: "DESC")
   end
 
   def edit

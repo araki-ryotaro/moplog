@@ -14,13 +14,7 @@
         <tbody>
           <% @posts.each do |post| %>
           <tr>
-            <th>
-              <% if post.user.name == current_user %>
-                <%= link_to post.user.name, users_path %>
-              <% elsif post.user.name != current_user %>
-                <%= link_to post.user.name, user_path(post.user.id) %>
-              <% end %>
-            </th>
+            <th><%= link_to post.user.name, user_path(post.user.id) %></th>
             <th><%= link_to post.title, post %></th>
             <th><%= post.description %></th>
             <th><%= link_to post.genre.name, genre_path(post.genre.id) %></th>
@@ -29,5 +23,8 @@
         </tbody>
       </table>
     </div>
+  </div>
+  <div  class="mx-auto" style="width: 200px;">
+    <%= paginate @posts %>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class='container mt-5'>
-  <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">投稿一覧</h2>
+  <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">いいね一覧</h2>
   <div class='row mt-5'>
     <div class='col mx-auto'>
       <table class="table">
@@ -12,19 +12,16 @@
           </tr>
         </thead>
         <tbody>
-          <% @posts.each do |post| %>
+          <% @favorite_posts.each do |post|%>
           <tr>
-            <th><%= link_to post.user.name, admin_user_path(post.user.id) %></th>
-            <th><%= link_to post.title, admin_post_path(post.id) %></th>
+            <th><%= link_to post.user.name, user_path(post.user.id) %></th>
             <th><%= post.description %></th>
-            <th><%= link_to post.genre.name, admin_genre_path(post.genre.id) %></th>
+            <th><%= post.description %></th>
+            <th><%= link_to post.genre.name, genre_path(post.genre.id) %></th>
           </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-  </div>
-  <div  class="mx-auto" style="width: 200px;">
-    <%= paginate @posts %>
   </div>
 </div>

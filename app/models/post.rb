@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :genre
 
-  validates :title, :description, presence: true
+  validates :title, :description, :video, presence: true
 
   def self.search(search_word)
     Post.where(['category LIKE ?', "#{search_word}"])

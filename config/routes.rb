@@ -11,7 +11,11 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do
+      member do
+        get :favorites
+      end
+    end
     resources :genres, only: [:show]
   end
 
@@ -34,7 +38,11 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:destroy]
     end
     resources :genres, only: [:index, :show, :create, :edit, :update]
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do
+      member do
+        get :favorites
+      end
+    end
   end
 
   get '/admin/users/searches/about', to: "admin/searches#top" , as: "admin/search"

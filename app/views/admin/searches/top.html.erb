@@ -51,4 +51,13 @@
       </div>
     </div>
   <% end %>
+  <% if @range == "投稿者" %>
+  <div  class="mx-auto" style="width: 200px;">
+    <%= paginate @users %>
+  </div>
+  <% else %>
+  <div  class="mx-auto" style="width: 200px;">
+    <%= paginate @posts %>
+  </div>
+  <% end %>
 </div>

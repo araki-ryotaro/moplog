@@ -7,14 +7,17 @@
           <tr>
             <th>ニックネーム</th>
             <th>メールアドレス</th>
+            <th>いいね</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><%= @user.name %></td>
             <td><%= @user.email %></td>
+            <td><%= link_to @user.favorites.count, favorites_user_path(@user) %></td>
           </tr>
           <tr>
+            <td></td>
             <td></td>
             <td></td>
           </tr>

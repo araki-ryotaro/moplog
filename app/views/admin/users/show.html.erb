@@ -8,6 +8,7 @@
             <th>ニックネーム</th>
             <th>メールアドレス</th>
             <th>ステータス</th>
+            <th>いいね</th>
           </tr>
         </thead>
         <tbody>
@@ -21,8 +22,10 @@
                 <p class="text-secondary">退会</p>
               <% end %>
             </td>
+            <td><%=link_to @user.favorites.count,favorites_admin_user_path(@user) %></td>
           </tr>
           <tr>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
