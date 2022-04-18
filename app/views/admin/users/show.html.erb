@@ -7,7 +7,6 @@
           <tr>
             <th>ニックネーム</th>
             <th>メールアドレス</th>
-            <th>ステータス</th>
             <th>いいね</th>
           </tr>
         </thead>
@@ -15,21 +14,26 @@
           <tr>
             <td><%= @user.name %></td>
             <td><%= @user.email %></td>
-            <td>
-              <% if @user.is_deleted == false %>
-                <p class="text-success">有効</p>
-              <% else %>
-                <p class="text-secondary">退会</p>
-              <% end %>
-            </td>
             <td><%=link_to @user.favorites.count,favorites_admin_user_path(@user) %></td>
           </tr>
+        </tbody>
+        <thead>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <th>フォロー</th>
+            <th>フォロワー</th>
+            <th>ステータス</th>
           </tr>
+        </thead>
+        <tbody>
+          <td><%= link_to @user.followings.count, user_followings_path(@user.id) %></td>
+          <td><%= link_to @user.followers.count, user_followers_path(@user.id) %></td>
+          <td>
+            <% if @user.is_deleted == false %>
+              <p class="text-success">有効</p>
+            <% else %>
+              <p class="text-secondary">退会</p>
+            <% end %>
+          </td>
         </tbody>
       </table>
       <%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-sm btn-info col mx-auto" %>
