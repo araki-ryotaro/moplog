@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
   validates :name, :email, presence: true
-  
+
   # フォローしたときの処理
   def follow(user_id)
     relationships.create(followed_id: user_id)
