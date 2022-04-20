@@ -8,15 +8,25 @@
         <table class="table">
           <thead class="thead-dark">
             <tr>
+              <th>ユーザーID</th>
               <th>ユーザー名</th>
               <th>投稿数</th>
+              <th>ステータス</th>
             </tr>
           </thead>
           <tbody>
             <% @users.each do |user| %>
             <tr>
+              <th><%= user.id %></th>
               <th><%= link_to user.name, admin_user_path(user.id) %></th>
               <th><%= user.post.count %>投稿</th>
+              <th>
+                <% if user.is_deleted == false %>
+                  <p class="text-success">有効</p>
+                <% else %>
+                  <p class="text-secondary">退会</p>
+                <% end %>
+              </th>
             </tr>
             <% end %>
           </tbody>

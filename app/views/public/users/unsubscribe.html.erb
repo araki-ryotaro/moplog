@@ -6,7 +6,7 @@
       <h5>再度ご利用をいただく場合には、新規登録のお手続きが必要になります。</h5>
       <h5>今までのコメント、いいね、投稿した内容も全て消去されます。</h5>
       <h5>本当に退会してよろしいですか？</h5>
-      <%= link_to "退会しない", users_path, class: "mt-3 col mx-auto btn btn-sm btn-info" %>
+      <%= link_to "退会しない", user_path(current_user.id), class: "mt-3 col mx-auto btn btn-sm btn-info" %>
       <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "mt-3 col mx-auto btn btn-sm btn-danger" %>
     </div>
   </div>

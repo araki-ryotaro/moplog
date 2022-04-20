@@ -5,9 +5,13 @@
       <h5>このサイトではRIOTGAMESのゲームをプレイしていて</h5>
       <h5>自信のあるプレイや珍しいことが起きた時などの動画を共有し</h5>
       <h5>RIOTGAMESの楽しい所や面白い所を広げていきましょう！</h5>
-      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "mt-3 col mx-auto btn btn-sm btn-secondary", method: :post %>
-      <%= link_to "ログイン", new_user_session_path, class: "mt-3 col mx-auto btn btn-sm btn-info" %>
-      <%= link_to "新規登録", new_user_registration_path, class: "mt-3 col mx-auto btn btn-sm btn-success" %>
+      <% if user_signed_in? %>
+      <% elsif admin_signed_in? %>
+      <% else %>
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "mt-3 col mx-auto btn btn-sm btn-secondary", method: :post %>
+        <%= link_to "ログイン", new_user_session_path, class: "mt-3 col mx-auto btn btn-sm btn-info" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "mt-3 col mx-auto btn btn-sm btn-success" %>
+      <% end %>
     </div>
   </div>
 </div>

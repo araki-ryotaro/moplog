@@ -4,7 +4,7 @@ class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   def after_sign_in_path_for(resource)
-    users_path
+    user_path(current_user.id)
   end
 
   def after_sign_out_path_for(resource)
@@ -14,7 +14,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to users_path
+    redirect_to user_path(current_user.id)
   end
 
   protected

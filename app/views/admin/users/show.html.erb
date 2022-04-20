@@ -25,8 +25,8 @@
           </tr>
         </thead>
         <tbody>
-          <td><%= link_to @user.followings.count, user_followings_path(@user.id) %></td>
-          <td><%= link_to @user.followers.count, user_followers_path(@user.id) %></td>
+          <td><%= link_to @user.followings.count, admin_user_followings_path(@user.id) %></td>
+          <td><%= link_to @user.followers.count, admin_user_followers_path(@user.id) %></td>
           <td>
             <% if @user.is_deleted == false %>
               <p class="text-success">有効</p>

@@ -16,15 +16,11 @@
             <% @users.each do |user| %>
               <tr>
                 <th><%= user.id %></th>
-                <th><%= link_to user.name, user_path(user.id) %></th>
+                <th><%= link_to user.name, admin_user_path(user.id) %></th>
                 <th><%= user.post.count %>投稿</th>
                 <th><%= user.followers.count %></th>
               </tr>
             <% end %>
-          <% else %>
-            <tr>
-              <td>ユーザーはいません</td>
-            </tr>
           <% end %>
         </tbody>
       </table>
