@@ -1,28 +1,35 @@
-<h2>新規登録</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-    <form>
-      <div class="mb-3">
-        <%= f.label :ユーザー名 %><br />
-        <%= f.text_field :name, autofocus: true, placeholder: "moplog", autocomplete: "name", class: "form-control" %>
+<div class='container pt-5'>
+  <div class='row mt-5'>
+    <div class='col-8 mx-auto mt-5'>
+      <div class="card pt-5 pl-5 pr-5 pb-5">
+      <h2>新規登録</h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+          <form>
+            <div class="mb-3">
+              <%= f.label :ユーザー名 %><br />
+              <%= f.text_field :name, autofocus: true, placeholder: "moplog", autocomplete: "name", class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :メールアドレス %><br />
+              <%= f.email_field :email, autofocus: true, placeholder: "sample@gmail.com", autocomplete: "email", class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :パスワード %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, placeholder: "6文字以上入力", autocomplete: "new-password", class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :パスワード確認 %><br />
+              <%= f.password_field :password_confirmation, placeholder: "パスワード再入力", autocomplete: "new-password", class: "form-control" %>
+            </div>
+            <%= f.submit "新規登録", class: "btn btn-success form-control" %>
+          </form>
+      <% end %>
       </div>
-      <div class="mb-3">
-        <%= f.label :メールアドレス %><br />
-        <%= f.email_field :email, autofocus: true, placeholder: "sample@gmail.com", autocomplete: "email", class: "form-control" %>
-      </div>
-      <div class="mb-3">
-        <%= f.label :パスワード %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, placeholder: "6文字以上入力", autocomplete: "new-password", class: "form-control" %>
-      </div>
-      <div class="mb-3">
-        <%= f.label :パスワード確認 %><br />
-        <%= f.password_field :password_confirmation, placeholder: "パスワード再入力", autocomplete: "new-password", class: "form-control" %>
-      </div>
-      <%= f.submit "新規登録", class: "btn btn-success form-control" %>
-    </form>
-<% end %>
-<%= render "public/shared/links" %>
+      <%= render "public/shared/links" %>
+    </div>
+  </div>
+</div>

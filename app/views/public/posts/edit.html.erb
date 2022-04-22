@@ -1,28 +1,30 @@
-<div class='container mt-5'>
-  <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">投稿編集</h2>
-  <div class='row mt-5'>
-    <div class='col-6 mx-auto'>
-      <%= form_with model: @post, url: post_path(@post.id), method: :patch, local: true do |f| %>
-        <table class="table">
-          <tr>
-            <td>題名</td>
-            <td><%= f.text_field :title %></td>
-          </tr>
-          <tr>
-            <td>説明</td>
-            <td><%= f.text_area :description %></td>
-          </tr>
-          <tr>
-            <td>ジャンル</td>
-            <td><%= f.collection_select(:genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --") %></td>
-          </tr>
-          <tr>
-            <td>動画</td>
-            <td><%= f.file_field :video %></td>
-          </tr>
-        </table>
-        <%= f.submit "変更", class: "mt-3 col mx-auto btn btn-sm btn-info" %>
-      <% end %>
+<div class='container pt-5'>
+  <div class="card pt-5 pl-5 pr-5 pb-5">
+    <h2>投稿編集</h2>
+    <div class='row mt-5'>
+      <div class='col-6 mx-auto'>
+        <%= form_with model: @post, url: post_path(@post.id), method: :patch, local: true do |f| %>
+          <table class="table">
+            <tr>
+              <td>題名</td>
+              <td><%= f.text_field :title %></td>
+            </tr>
+            <tr>
+              <td>説明</td>
+              <td><%= f.text_area :description %></td>
+            </tr>
+            <tr>
+              <td>ジャンル</td>
+              <td><%= f.collection_select(:genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --") %></td>
+            </tr>
+            <tr>
+              <td>動画</td>
+              <td><%= f.file_field :video %></td>
+            </tr>
+          </table>
+          <%= f.submit "変更", class: "mt-3 col mx-auto btn btn-sm btn-info" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

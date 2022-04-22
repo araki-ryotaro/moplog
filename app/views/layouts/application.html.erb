@@ -6,13 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <%= link_to "Moplog", root_path, class: 'nav-link text-light' %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -72,14 +72,14 @@
               <%= form_with url: search_path, local: true, method: :get do |f| %>
                 <%= f.text_field :word, placeholder: "キーワードを入力", class: "form-control" %>
                 <%= f.select :range, options_for_select([['投稿者'], ['タイトル']]) %>
-                <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backword_match"], ["部分一致","partial_match"]]) %>
+                <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
                 <%= f.submit "検索", class: 'btn btn-outline-light my-2 my-sm-0' %>
               <% end %>
             <% elsif admin_signed_in? %>
               <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
                 <%= f.text_field :word, placeholder: "キーワードを入力", class: "form-control" %>
                 <%= f.select :range, options_for_select([['投稿者'], ['タイトル']]) %>
-                <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backword_match"], ["部分一致","partial_match"]]) %>
+                <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
                 <%= f.submit "検索", class: 'btn btn-outline-light my-2 my-sm-0' %>
               <% end %>
             <% end %>
@@ -87,8 +87,8 @@
         </div>
       </nav>
     </header>
-    <div class="container">
+    <main class="layout">
       <%= yield %>
-    </div>
+    </main>
   </body>
 </html>

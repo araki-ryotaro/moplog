@@ -1,53 +1,55 @@
-<div class='container mt-5'>
-  <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">ジャンル一覧</h2>
-  <div class='row mt-5'>
-    <div class='col-6 mx-auto'>
-      <% if @genre.errors.any? %>
-        <%= @genre.errors.count %>件のエラーが発生しました
-        <ul>
-          <% @genre.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
-      <%= form_with model: @genre, url: admin_genres_path do |f| %>
-        <table>
-          <thead>
+<div class='container pt-5'>
+  <div class="card pt-5 pl-5 pr-5 pb-5">
+    <h2>ジャンル一覧</h2>
+    <div class='row mt-5'>
+      <div class='col-6 mx-auto'>
+        <% if @genre.errors.any? %>
+          <%= @genre.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @genre.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= form_with model: @genre, url: admin_genres_path do |f| %>
+          <table>
+            <thead>
+              <tr>
+                <th>新規ジャンル登録</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= f.text_field :name, placeholder: "ジャンル名を入力", class: "form-control mt-3" %></td>
+                <td><%= f.submit '登録', class: "ml-5 mt-3 btn btn-sm btn-success" %></td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>
+    <div class='row mt-5'>
+      <div class='col-6 mx-auto'>
+        <table class="table">
+          <thead class="thead-dark">
             <tr>
-              <th>新規ジャンル登録</th>
+              <th>ジャンル名</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><%= f.text_field :name, placeholder: "ジャンル名を入力", class: "form-control mt-3" %></td>
-              <td><%= f.submit '登録', class: "ml-5 mt-3 btn btn-sm btn-success" %></td>
-            </tr>
-          </tbody>
-        </table>
-      <% end %>
-    </div>
-  </div>
-  <div class='row mt-5'>
-    <div class='col-6 mx-auto'>
-      <table class="table">
-        <thead class="thead-dark">
+          <% @genres.each do |genre| %>
           <tr>
-            <th>ジャンル名</th>
-            <th></th>
+            <td><%= genre.name %></td>
+            <td><%= link_to "編集", edit_admin_genre_path(genre), class: "btn btn-sm btn-info" %></td>
           </tr>
-        </thead>
-        <tbody>
-        <% @genres.each do |genre| %>
-        <tr>
-          <td><%= genre.name %></td>
-          <td><%= link_to "編集", edit_admin_genre_path(genre), class: "btn btn-sm btn-info" %></td>
-        </tr>
-        </tbody>
-        <% end %>
-      </table>
+          </tbody>
+          <% end %>
+        </table>
+      </div>
     </div>
-  </div>
-  <div  class="mx-auto" style="width: 200px;">
-    <%= paginate @genres %>
+    <div  class="mx-auto" style="width: 200px;">
+      <%= paginate @genres %>
+    </div>
   </div>
 </div>

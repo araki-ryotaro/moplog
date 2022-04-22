@@ -1,78 +1,80 @@
-<div class='container mt-5'>
-  <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">会員ページ</h2>
-  <div class='row mt-5'>
-    <div class='col-6'>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ニックネーム</th>
-            <th>メールアドレス</th>
-            <th>いいね</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @user.name %></td>
-            <td><%= @user.email %></td>
-            <td><%= link_to @user.favorites.count, favorites_user_path(@user) %></td>
-          </tr>
-        </tbody>
-        <thead>
-          <tr>
-            <th>フォロー</th>
-            <th>フォロワー</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= link_to @user.followings.count, user_followings_path(@user.id) %></td>
-            <td><%= link_to @user.followers.count, user_followers_path(@user.id) %></td>
-            <td>
-              <% if current_user.name != "ゲストユーザー" %>
-                <% if @user.name != "ゲストユーザー" %>
-                  <% if @user.id != current_user.id %>
-                    <% if current_user.following?(@user) %>
-                      <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-sm btn-danger col mx-auto" %>
+<div class='container pt-5'>
+  <div class="card pt-5 pl-5 pr-5 pb-5">
+    <h2>会員ページ</h2>
+    <div class='row mt-5'>
+      <div class='col-6'>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ニックネーム</th>
+              <th>メールアドレス</th>
+              <th>いいね</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @user.name %></td>
+              <td><%= @user.email %></td>
+              <td><%= link_to @user.favorites.count, favorites_user_path(@user) %></td>
+            </tr>
+          </tbody>
+          <thead>
+            <tr>
+              <th>フォロー</th>
+              <th>フォロワー</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= link_to @user.followings.count, user_followings_path(@user.id) %></td>
+              <td><%= link_to @user.followers.count, user_followers_path(@user.id) %></td>
+              <td>
+                <% if current_user.name != "ゲストユーザー" %>
+                  <% if @user.name != "ゲストユーザー" %>
+                    <% if @user.id != current_user.id %>
+                      <% if current_user.following?(@user) %>
+                        <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-sm btn-danger col mx-auto" %>
+                      <% else %>
+                        <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-sm btn-success col mx-auto" %>
+                      <% end %>
                     <% else %>
-                      <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-sm btn-success col mx-auto" %>
+                      <%= link_to "ユーザー編集", edit_user_path(@user.id), class: "btn btn-sm btn-info col mx-auto" %>
                     <% end %>
-                  <% else %>
-                    <%= link_to "ユーザー編集", edit_user_path(@user.id), class: "btn btn-sm btn-info col mx-auto" %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-6">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th>タイトル</th>
-            <th>動画説明</th>
-            <th>ジャンル</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @posts.each do |post| %>
-          <tr>
-            <td><%= link_to post.title, post_path(post.id) %></td>
-            <td><%= post.description %></td>
-            <td><%= link_to post.genre.name, genre_path(post.genre.id) %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div class="mx-auto" style="width: 200px;">
-        <%= paginate @posts %>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th>タイトル</th>
+              <th>動画説明</th>
+              <th>ジャンル</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @posts.each do |post| %>
+            <tr>
+              <td><%= link_to post.title, post_path(post.id) %></td>
+              <td><%= post.description %></td>
+              <td><%= link_to post.genre.name, genre_path(post.genre.id) %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="mx-auto" style="width: 200px;">
+          <%= paginate @posts %>
+        </div>
       </div>
     </div>
   </div>

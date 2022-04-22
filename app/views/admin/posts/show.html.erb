@@ -1,43 +1,47 @@
-<div class='container mt-5'>
-  <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark"><%= @post.title %></h2>
-  <h4><%= @post.genre.name %></h4>
-  <div class="embed-responsive embed-responsive-16by9">
-    <video src="<%= rails_blob_path(@post.video) %>" type="video/mp4" controls></video>
-  </div><br>
-  <h6>投稿者：<%= @post.user.name %></h6>
-  <h5><%= @post.description %></h5>
-  <div class="mb-2">
-    <%= link_to "編集", edit_admin_post_path(@post.id), class: "btn btn-sm btn-info" %>
-    <%= link_to "削除", admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
-  </div>
-  <div class="btn btn-sm btn-dark">
-    ☆<%= @post.favorites.count %>
-  </div>
-  <div class="mt-2">
-    コメント件数:<%= @post.post_comments.count %>
-  </div>
-  <div class='row mt-5'>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <td>ユーザー名</td>
-          <td>日付</td>
-          <td>コメント</td>
-          <td></td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @post.post_comments.each do |post_comment| %>
-        <tr>
-          <td><%= post_comment.user.name %></td>
-          <td><%= post_comment.created_at.strftime("%Y/%m/%d")%></td>
-          <td><%= post_comment.comment %></td>
-          <td>
-            <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger" %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class='container pt-5'>
+  <div class="card pt-5 pl-5 pr-5 pb-5">
+    <h2><%= @post.title %></h2>
+    <h4><%= @post.genre.name %></h4>
+    <div class="embed-responsive embed-responsive-16by9">
+      <video src="<%= rails_blob_path(@post.video) %>" type="video/mp4" controls></video>
+    </div><br>
+    <h6>投稿者：<%= @post.user.name %></h6>
+    <h5><%= @post.description %></h5>
+    <div class="mb-2">
+      <%= link_to "編集", edit_admin_post_path(@post.id), class: "btn btn-sm btn-info" %>
+      <%= link_to "削除", admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
+    </div>
+    <p>
+      <%= link_to "", class: "btn btn-sm btn-dark" do %>
+        ☆<%= @post.favorites.count %>
+      <% end %>
+    </p>
+    <div class="mt-2">
+      コメント件数:<%= @post.post_comments.count %>
+    </div>
+    <div class='row mt-5'>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>ユーザー名</td>
+            <td>日付</td>
+            <td>コメント</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post.post_comments.each do |post_comment| %>
+          <tr>
+            <td><%= post_comment.user.name %></td>
+            <td><%= post_comment.created_at.strftime("%Y/%m/%d")%></td>
+            <td><%= post_comment.comment %></td>
+            <td>
+              <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
