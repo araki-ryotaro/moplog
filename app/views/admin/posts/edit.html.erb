@@ -6,19 +6,19 @@
         <%= form_with model: @post, url: admin_post_path(@post.id), method: :patch, local: true do |f| %>
           <table class="table">
             <tr>
-              <td>題名</td>
-              <td><%= f.text_field :title %></td>
+              <td>タイトル</td>
+              <td><%= f.text_field :title, placeholder: "タイトルを入力", class: "form-control" %></td>
             </tr>
             <tr>
-              <td>説明</td>
-              <td><%= f.text_area :description %></td>
+              <td>動画説明</td>
+              <td><%= f.text_area :description, placeholder: "動画の説明を入力", class: "form-control" %></td>
             </tr>
             <tr>
               <td>ジャンル</td>
               <td><%= f.collection_select(:genre_id, Genre.all, :id, :name, prompt: "-- 選択してください --") %></td>
             </tr>
             <tr>
-              <td>動画</td>
+              <td>投稿動画</td>
               <td><%= f.file_field :video %></td>
             </tr>
           </table>

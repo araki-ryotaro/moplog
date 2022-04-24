@@ -1,8 +1,9 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :valid_user!, only: [:show]
 
   def index
-    @users = User.all.order(id: "DESC").page(params[:page]).per(10)
+    @users = User.where(is_deleted: false).order(id: "DESC").page(params[:page]).per(10)
   end
 
   def show
@@ -12,8 +13,12 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user == current_user
-      render :edit
+    if @user.name != "ゲストユーザー"
+      if @user == current_user
+        render :edit
+      else
+        redirect_to user_path(current_user.id)
+      end
     else
       redirect_to user_path(current_user.id)
     end
@@ -45,6 +50,13 @@ class Public::UsersController < ApplicationController
   end
 
   private
+
+  def valid_user!
+    @user = User.find(params[:id])
+    if @user.is_deleted == true
+      redirect_to users_path
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :email)

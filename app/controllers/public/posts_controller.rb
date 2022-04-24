@@ -1,8 +1,9 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :valid_user!, only: [:show]
 
   def index
-    @posts = Post.all.order(id: "DESC").page(params[:page]).per(10)
+    @posts = Post.joins(:user).where(user: {is_deleted: false}).order(id: "DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -53,6 +54,13 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
+  def valid_user!
+    @post = Post.find(params[:id])
+    if @post.user.is_deleted == true
+      redirect_to posts_path
+    end
+  end
 
   def post_params
     params.require(:post).permit(:user_id, :genre_id, :title, :description, :video)

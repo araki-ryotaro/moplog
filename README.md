@@ -41,3 +41,5 @@ RIOTGAMESのゲームで遊んでいる人
 - 自分で撮影している動画数本
 - RIOTGAMES利用規約
 - https://www.riotgames.com/ja/legal
+- 背景画像
+- https://unsplash.com/
