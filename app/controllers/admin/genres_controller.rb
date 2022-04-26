@@ -12,7 +12,8 @@ class Admin::GenresController < ApplicationController
       redirect_to admin_genres_path
     else
       @genres = Genre.all.order(id: "DESC").page(params[:page]).per(10)
-      render :index
+      flash[:denger] = "ジャンル名を入力してください"
+      redirect_to admin_genres_path
     end
   end
 
