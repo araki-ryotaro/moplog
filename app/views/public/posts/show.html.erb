@@ -27,9 +27,7 @@
     </p>
     <% else %>
     <p>
-      <%= link_to "", class: "btn btn-sm btn-dark" do %>
-        ☆<%= @post.favorites.count %>
-      <% end %>
+      ☆<%= @post.favorites.count %>
     </p>
   <% end %>
   <div class='row'>
