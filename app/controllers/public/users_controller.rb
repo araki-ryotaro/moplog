@@ -17,10 +17,10 @@ class Public::UsersController < ApplicationController
       if @user == current_user
         render :edit
       else
-        redirect_to user_path(current_user.id)
+        redirect_to user_path(@user.id)
       end
     else
-      redirect_to user_path(current_user.id)
+      redirect_to user_path(@user.id)
     end
   end
 
@@ -44,8 +44,8 @@ class Public::UsersController < ApplicationController
   end
 
   def favorites
-    @user = User.find(params[:id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    user = User.find(params[:id])
+    favorites = Favorite.where(user_id: user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
   end
 
